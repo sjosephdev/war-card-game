@@ -24,7 +24,7 @@ h1, h6 {
   margin-bottom: 4rem;
 }
 
-h1, h2, h3, h6, span, button {
+h1, h2, h3, h5, h6, span, button {
   text-align: center;
 }
 
@@ -40,7 +40,7 @@ h2, h3, span {
   font-size: 5rem;
 }
 
-h6 {
+h5, h6 {
   font-size: 2rem;
 }
 
@@ -66,6 +66,25 @@ button {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-evenly;
+}
+
+.p1StatBar, .p2StatBar {
+  margin: 0 0 1rem 0;
+}
+
+.p1WonCards, .p2WonCards {
+  display: inline-flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  /* min-width: 0; */
+  width: 125px;
+}
+
+.p1WonCards img, .p2WonCards img {
+  flex: 1;
+  margin: 0;
+  height: auto;
+  width: 40px;
 }
 
 #p1Span, #p2Span {

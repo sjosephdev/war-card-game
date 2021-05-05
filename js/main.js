@@ -1,12 +1,18 @@
 // player names...
 let playerOne = prompt('ENTER NAME PLAYER 1') || 'Player 1'
 document.querySelector('.playerOne').innerText = playerOne
+document.querySelector('.p1StatBar').innerText = `${playerOne}'s SCORE`
 
 let playerTwo = prompt('ENTER NAME PLAYER 2') || 'Player 2'
 document.querySelector('.playerTwo').innerText = playerTwo
+document.querySelector('.p2StatBar').innerText = `${playerTwo}'s SCORE`
 
 let playerOneCards = 0
 let playerTwoCards = 0
+
+let playerOneSavedCards = []
+let playerTwoSavedCards = []
+let warCards = []
 
 let itsWar = false
 let warCount = 0
@@ -18,6 +24,8 @@ const p1CardCount = document.querySelector('#p1CardCount')
 const p2CardCount = document.querySelector('#p2CardCount')
 const p1Span = document.querySelector('#p1Span')
 const p2Span = document.querySelector('#p2Span')
+const p1WonCards = document.querySelector('.p1WonCards')
+const p2WonCards = document.querySelector('.p2WonCards')
 
 let deckId = ''
 
@@ -42,9 +50,14 @@ function getFetch() {
       .then(data => {
 
         console.log(data.remaining)
+        console.log(data)
         cards.forEach(cards => cards.classList.add('fx'));
         p1Span.innerText = ''
         p2Span.innerText = ''
+        appendPlayerCards(playerOne)
+        appendPlayerCards(playerTwo)
+        playerOneSavedCards = []
+        playerTwoSavedCards = []
 
         if (data.remaining === 0) {
           pickWinner()
@@ -62,6 +75,10 @@ function getFetch() {
               document.querySelector('#winner').innerText = `${playerOne} Wins the War!`
               p1Span.innerText = 'WINNER!'
               playerOneCards += 8
+              warCards.push(data.cards[0].image, data.cards[1].image)
+              warCards.forEach(card => playerOneSavedCards.push(card))
+              // playerOneSavedCards.push(data.cards[0].image, data.cards[1].image)
+              warCards = []
               cardCount()
               itsWar = false
               warCount = 0
@@ -69,12 +86,14 @@ function getFetch() {
             
             } else if (itsWar === true) {
               document.querySelector('#winner').innerText = `${playerOne} Wins!`
-              
+              warCards.push(data.cards[0].image, data.cards[1].image)
+
             } else {
               document.querySelector('#winner').innerText = `${playerOne} Wins!`
               p1Span.innerText = 'WINNER!'
               playerOneCards += 2
-              cardCount()        
+              cardCount()
+              playerOneSavedCards.push(data.cards[0].image, data.cards[1].image)     
            }
             
           // PLAYER 2 WINS
@@ -83,6 +102,10 @@ function getFetch() {
               document.querySelector('#winner').innerText = `${playerTwo} Wins the War!`
               p2Span.innerText = 'WINNER!'
               playerTwoCards += 8
+              warCards.push(data.cards[0].image, data.cards[1].image)
+              warCards.forEach(card => playerTwoSavedCards.push(card))
+              // playerTwoSavedCards.push(data.cards[0].image, data.cards[1].image)
+              warCards = []
               cardCount()
               itsWar = false
               warCount = 0
@@ -90,19 +113,71 @@ function getFetch() {
             
             } else if (itsWar === true) {
               document.querySelector('#winner').innerText = `${playerTwo} Wins!`
+              warCards.push(data.cards[0].image, data.cards[1].image)
                           
             } else {
               document.querySelector('#winner').innerText = `${playerTwo} Wins!`
               p2Span.innerText = 'WINNER!'
               playerTwoCards += 2
               cardCount()
+              playerTwoSavedCards.push(data.cards[0].image, data.cards[1].image) 
            }
-
+          
+          // TIE ... WAR!
           } else {
             document.querySelector('#winner').innerText = 'WAR!'
+            warCards.push(data.cards[0].image, data.cards[1].image)
             war()
         }
         } 
+
+        function war() {
+          itsWar = true;
+          shuffleBtn.style.display = 'none'
+        
+          setTimeout(function() {
+            warClock.innerText = '1'
+            getFetch()
+            warCount++
+          }, 2000)
+        
+          setTimeout(function() {
+            warClock.innerText = '2'
+            getFetch()
+            warCount++
+          }, 4000)
+        
+          setTimeout(function() {
+            warClock.innerText = '3'
+            getFetch()
+            warCount++
+          }, 6000)
+        
+          setTimeout(function() {
+            warClock.innerText = ''
+          }, 8000)
+        }
+
+        function appendPlayerCards(player) {
+          
+            if (player === playerOne) {
+              playerOneSavedCards.forEach(card => {
+                const newImg = document.createElement('img')
+                newImg.src = card
+                p1WonCards.appendChild(newImg)
+              })
+            } else {
+              playerTwoSavedCards.forEach(card => {
+                const newImg = document.createElement('img')
+                newImg.src = card
+                p2WonCards.appendChild(newImg)
+              })
+            }
+            // playerOneSavedCards = []
+            // playerTwoSavedCards = []
+          
+        }
+
       })
       .catch(err => {
           console.log(`error ${err}`);
@@ -123,32 +198,35 @@ function cardValue(val) {
   }
 }
 
-function war() {
-  itsWar = true;
-  shuffleBtn.style.display = 'none'
+// function war() {
+//   itsWar = true;
+//   shuffleBtn.style.display = 'none'
 
-  setTimeout(function() {
-    warClock.innerText = '1'
-    getFetch()
-    warCount++
-  }, 2000)
+//   setTimeout(function() {
+//     warClock.innerText = '1'
+//     getFetch()
+//     warCards.push(data.cards[0].image, data.cards[1].image)
+//     warCount++
+//   }, 2000)
 
-  setTimeout(function() {
-    warClock.innerText = '2'
-    getFetch()
-    warCount++
-  }, 4000)
+//   setTimeout(function() {
+//     warClock.innerText = '2'
+//     getFetch()
+//     warCards.push(data.cards[0].image, data.cards[1].image)
+//     warCount++
+//   }, 4000)
 
-  setTimeout(function() {
-    warClock.innerText = '3'
-    getFetch()
-    warCount++
-  }, 6000)
+//   setTimeout(function() {
+//     warClock.innerText = '3'
+//     getFetch()
+//     warCards.push(data.cards[0].image, data.cards[1].image)
+//     warCount++
+//   }, 6000)
 
-  setTimeout(function() {
-    warClock.innerText = ''
-  }, 8000)
-}
+//   setTimeout(function() {
+//     warClock.innerText = ''
+//   }, 8000)
+// }
 
 function pickWinner() {
   if (playerOneCards > playerTwoCards) {
