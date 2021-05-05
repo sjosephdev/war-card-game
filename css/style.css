@@ -1,0 +1,75 @@
+/******************************************
+/* CSS
+/*******************************************/
+
+* {
+  box-sizing: border-box;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background: rgb(209, 212, 219);
+}
+
+img, h1, h2, h3, h6, span, button {
+  display: block;
+  margin: 0 auto;
+}
+
+h1, h6 {
+  margin-bottom: 4rem;
+}
+
+h1, h2, h3, h6, span, button {
+  text-align: center;
+}
+
+h1 {
+  font-size: 7rem;
+}
+
+h3, button {
+  margin-top: 4rem;
+}
+
+h2, h3, span {
+  font-size: 5rem;
+}
+
+h6 {
+  font-size: 2rem;
+}
+
+button {
+  font-size: 3rem;
+}
+
+.middleSection {
+  align-self: center;
+}
+
+.card {
+  transition: all .5s ease;
+}
+
+.fx {
+  transform: scale(1.1);
+  /* border: 0 1rem #f1e2aa; */
+  box-shadow: 1rem 0 2rem -1rem #f1e2aa, -1rem 0 2rem -1rem #f1e2aa;
+}
+
+.players {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+}
+
+#p1Span, #p2Span {
+  color: #ffffff;
+  font-weight: 600;
+  margin-top: 2rem;
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    	<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel = "apple-touch-icon" sizes = "180x180" href = "images/s-title-180-180.png">
+		<link rel = "icon" type = "image/png" sizes = "32x32" href = "images/s-title-32-32.png">
+		<link rel = "icon" type = "image/png" sizes = "16x16" href = "images/s-title-16-16.png">
+		<link rel = "mask-icon" href = "images/s-title.png">
+		<link rel = "shortcut icon" href = "images/s-title.png">
+		<link rel="stylesheet" href="assets/css/main.css" />
+
+    	<meta name="description" content="SJOSEPH WAR CARD GAME">
+    	<meta name="keywords" content="sjoseph, dev, war">
+
+		<title>S. Joseph | WAR!</title>
+		<!-- external fonts -->
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet"> 
+		<!-- external CSS link -->
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+		<section class="mainSection">
+			<h1>WAR</h1>
+			<section class="players">
+
+				<!-- <section class="playerOneStats">
+					<div class="playerOneScore">
+					</div>
+					<div class="playerOneCards">
+					</div>
+				</section> -->
+
+				<section class="playerOneSection">
+					<h2 class="playerOne">Player 1</h2>
+					<h6 id='p1CardCount'></h6>
+					<img class="card" id="playerOne" src="" alt="">
+					<span id="p1Span"></span>
+				</section>
+
+				<section class="middleSection">
+					<h2 class="middle"></h2>
+				</section>
+
+				<section class="playerTwoSection">
+					<h2	class="playerTwo">Player 2</h2>
+					<h6 id='p2CardCount'></h6>
+					<img class="card" id="playerTwo" src="" alt="">
+					<span id="p2Span"></span>
+				</section>
+
+				<!-- <section class="playerTwoStats">
+					<div class="playerTwoScore">
+					</div>
+					<div class="playerTwoCards">
+					</div>
+				</section> -->
+
+			</section>
+			<section class="winnerSection">
+				<h3 id="winner"></h3>
+			</section>
+		<section class="shuffleSection">
+			<button id="shuffle" type="button" name="button">SHUFFLE DECK!</button>
+		</section>	
+		
+		</section>
+
+
+		<script type="text/javascript" src="js/main.js"></script>
+	</body>
+</html>
