@@ -15,12 +15,28 @@ body {
   background: rgb(209, 212, 219);
 }
 
+ul, li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:hover {
+  color: gray;
+}
+
+
 img, h1, h2, h3, h6, span, button {
   display: block;
   margin: 0 auto;
 }
 
-h1, h6 {
+h6 {
   margin-bottom: 4rem;
 }
 
@@ -40,12 +56,16 @@ h2, h3, span {
   font-size: 5rem;
 }
 
-h5, h6 {
+h5, h6, a {
   font-size: 2rem;
 }
 
 button {
   font-size: 3rem;
+}
+
+.howToPlay * {
+  margin-bottom: 4rem;
 }
 
 .middleSection {
@@ -91,4 +111,24 @@ button {
   color: #ffffff;
   font-weight: 600;
   margin-top: 2rem;
+}
+
+.footerSection {
+  flex-shrink: 0;
+}
+
+.footerSection ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.footerSection h6 {
+  margin: 3rem 0 0 0;
+}
+
+.footerSection li {
+  margin: 0 2rem;
+  font-size: 3rem;
 }

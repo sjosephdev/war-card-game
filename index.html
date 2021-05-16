@@ -22,55 +22,66 @@
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
-		<section class="mainSection">
-			<h1>WAR</h1>
-			<section class="players">
+		<main>
+			<section class="mainSection">
+				<h1>WAR</h1>
+				<h6 class="howToPlay"><a href="https://en.wikipedia.org/wiki/War_(card_game)">HOW TO PLAY</a></h6>
+				<section class="players">
 
-				<section class="playerOneStatBar">
-					<div class="playerOneScore">
-						<h5 class="p1StatBar"></h5>
-						<h6 id='p1CardCount'></h6>
-					</div>
-					<div class="p1WonCards">
-					</div>
+					<section class="playerOneStatBar">
+						<div class="playerOneScore">
+							<h5 class="p1StatBar"></h5>
+							<h6 id='p1CardCount'></h6>
+						</div>
+						<div class="p1WonCards">
+						</div>
+					</section>
+
+					<section class="playerOneSection">
+						<h2 class="playerOne">Player 1</h2>
+						<img class="card" id="playerOne" src="" alt="">
+						<span id="p1Span"></span>
+					</section>
+
+					<section class="middleSection">
+						<h2 class="middle"></h2>
+					</section>
+
+					<section class="playerTwoSection">
+						<h2	class="playerTwo">Player 2</h2>
+						<img class="card" id="playerTwo" src="" alt="">
+						<span id="p2Span"></span>
+					</section>
+
+					<section class="playerTwoStatBar">
+						<div class="playerTwoScore">
+							<h5 class="p2StatBar"></h5>
+							<h6 id='p2CardCount'></h6>
+						</div>
+						<div class="p2WonCards">
+						</div>
+					</section>
+
 				</section>
-
-				<section class="playerOneSection">
-					<h2 class="playerOne">Player 1</h2>
-					<img class="card" id="playerOne" src="" alt="">
-					<span id="p1Span"></span>
+				<section class="winnerSection">
+					<h3 id="winner"></h3>
 				</section>
-
-				<section class="middleSection">
-					<h2 class="middle"></h2>
-				</section>
-
-				<section class="playerTwoSection">
-					<h2	class="playerTwo">Player 2</h2>
-					<img class="card" id="playerTwo" src="" alt="">
-					<span id="p2Span"></span>
-				</section>
-
-				<section class="playerTwoStatBar">
-					<div class="playerTwoScore">
-						<h5 class="p2StatBar"></h5>
-						<h6 id='p2CardCount'></h6>
-					</div>
-					<div class="p2WonCards">
-					</div>
-				</section>
-
+			<section class="shuffleSection">
+				<button id="shuffle" type="button" name="button">SHUFFLE DECK!</button>
+			</section>	
+			
 			</section>
-			<section class="winnerSection">
-				<h3 id="winner"></h3>
-			</section>
-		<section class="shuffleSection">
-			<button id="shuffle" type="button" name="button">SHUFFLE DECK!</button>
-		</section>	
-		
-		</section>
+			<footer>
+					<section class="footerSection">
+						<ul>
+							<li><a href="https://www.sjoseph.dev">About</a></li>
+							<li>|</li>
+							<li><a href="https://github.com/sjosephdev/cocktail-browser">GitHub</a></li>
+						</ul>
+					</section>
+			</footer>
 
-
+		</main>
 		<script type="text/javascript" src="js/main.js"></script>
 	</body>
 </html>
