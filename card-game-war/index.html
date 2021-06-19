@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    	<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel = "apple-touch-icon" sizes = "180x180" href = "images/s-title-180-180.png">
+		<link rel = "icon" type = "image/png" sizes = "32x32" href = "images/s-title-32-32.png">
+		<link rel = "icon" type = "image/png" sizes = "16x16" href = "images/s-title-16-16.png">
+		<link rel = "mask-icon" href = "images/s-title.png">
+		<link rel = "shortcut icon" href = "images/s-title.png">
+		<link rel="stylesheet" href="assets/css/main.css" />
+
+    	<meta name="description" content="SJOSEPH WAR CARD GAME">
+    	<meta name="keywords" content="sjoseph, dev, war">
+
+		<title>S. Joseph | WAR!</title>
+		<!-- external fonts -->
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet"> 
+		<!-- external CSS link -->
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+		<main>
+			<section class="mainSection">
+				<h1>WAR</h1>
+				<h6 class="howToPlay"><a href="https://en.wikipedia.org/wiki/War_(card_game)">HOW TO PLAY</a></h6>
+				<section class="players">
+
+					<section class="playerOneStatBar">
+						<div class="playerOneScore">
+							<h5 class="p1StatBar"></h5>
+							<h6 class="cardCount" id='p1CardCount'></h6>
+						</div>
+						<div class="p1WonCards">
+						</div>
+					</section>
+
+					<section class="playerOneSection">
+						<h2 class="playerOne">Player 1</h2>
+						<img class="card" id="playerOneCard" src="" alt="">
+						<span id="p1Span"></span>
+					</section>
+
+					<section class="middleSection">
+						<h2 class="middle"></h2>
+					</section>
+
+					<section class="playerTwoSection">
+						<h2	class="playerTwo">Player 2</h2>
+						<img class="card" id="playerTwoCard" src="" alt="">
+						<span id="p2Span"></span>
+					</section>
+
+					<section class="playerTwoStatBar">
+						<div class="playerTwoScore">
+							<h5 class="p2StatBar"></h5>
+							<h6 class="cardCount" id='p2CardCount'></h6>
+						</div>
+						<div class="p2WonCards">
+						</div>
+					</section>
+
+				</section>
+				<section class="winnerSection">
+					<h3 id="winner"></h3>
+				</section>
+			<section class="shuffleSection">
+				<button id="shuffle" type="button" name="button">NEW GAME</button>
+			</section>	
+			
+			</section>
+			<footer>
+					<section class="footerSection">
+						<ul>
+							<li><a href="https://www.sjoseph.dev">About</a></li>
+							<li>|</li>
+							<li><a href="https://github.com/sjosephdev/card-game-war">GitHub</a></li>
+						</ul>
+					</section>
+			</footer>
+
+		</main>
+		<script type="text/javascript" src="js/main.js"></script>
+	</body>
+</html>
