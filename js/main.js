@@ -1,188 +1,306 @@
-// player names...
-let playerOne = prompt('ENTER NAME PLAYER 1') || 'Player 1'
-document.querySelector('.playerOne').innerText = playerOne
-document.querySelector('.p1StatBar').innerText = `${playerOne}'s SCORE`
-
-let playerTwo = prompt('ENTER NAME PLAYER 2') || 'Player 2'
-document.querySelector('.playerTwo').innerText = playerTwo
-document.querySelector('.p2StatBar').innerText = `${playerTwo}'s SCORE`
-
-let playerOneCards = 0
-let playerTwoCards = 0
-
-let playerOneSavedCards = []
-let playerTwoSavedCards = []
-let warCards = []
-
-let itsWar = false
-let warCount = 0
-
-let warClock = document.querySelector('.middle')
-const shuffleBtn = document.querySelector('#shuffle')
-const cards = Array.from(document.querySelectorAll('.card'))
-const p1CardCount = document.querySelector('#p1CardCount')
-const p2CardCount = document.querySelector('#p2CardCount')
-const p1Span = document.querySelector('#p1Span')
-const p2Span = document.querySelector('#p2Span')
-const p1WonCards = document.querySelector('.p1WonCards')
-const p2WonCards = document.querySelector('.p2WonCards')
+// variables and constants
 
 let deckId = ''
+const warClock = document.querySelector('.middle')
+const shuffleBtn = document.querySelector('#shuffle')
+const playerOneDisplay = document.querySelector('.playerOne')
+const playerTwoDisplay = document.querySelector('.playerTwo')
+const cards = Array.from(document.querySelectorAll('.card'))
+const playerOneCardCount = document.querySelector('#p1CardCount')
+const playerTwoCardCount = document.querySelector('#p2CardCount')
+const p1Span = document.querySelector('#p1Span')
+const p2Span = document.querySelector('#p2Span')
+const playerOneCard = document.querySelector('#playerOneCard')
+const playerTwoCard = document.querySelector('#playerTwoCard')
+<<<<<<< HEAD
+const playerOneWonCards = document.querySelector('.p1WonCards')
+const playerTwoWonCards = document.querySelector('.p2WonCards')
+const winner = document.querySelector('#winner')
 
 
-  fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
-      .then(res => res.json()) // parse response as JSON
-      .then(data => {
-        deckId = data.deck_id
+class Game {
+  constructor(isWar, cardOneVal, cardTwoVal, warCards, warFlips) {
+    this.isWar = isWar;
+    this.cardOneVal = cardOneVal;
+    this.cardTwoVal = cardTwoVal;
+    this.warCards = warCards;
+    this.warFlips = warFlips;
+=======
+const p1WonCards = document.querySelector('.p1WonCards')
+const p2WonCards = document.querySelector('.p2WonCards')
+const winner = document.querySelector('#winner')
 
-      })
-      .catch(err => {
-          console.log(`error ${err}`)
-      });
+// class declarations
 
-document.querySelector('button').addEventListener('click', getFetch)
-cards.forEach(card => card.addEventListener('transitionend', removeTransition))
+class Game {
+  constructor(isWar, cardOneVal, cardTwoVal) {
+    this.isWar = isWar;
+    this.cardOneVal = cardOneVal;
+    this.cardTwoVal = cardTwoVal;
+>>>>>>> 6e5365f23b35316e7c4eb4815ae141e133c587b3
+  }
 
-function getFetch() {
-  
-  fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=2`)
-      .then(res => res.json()) // parse response as JSON
-      .then(data => {
+  newDeck() {
+    fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
+    .then(res => res.json()) // parse response as JSON
+    .then(data => {
+      deckId = data.deck_id
+    })
+    .catch(err => {
+        console.log(`error ${err}`)
+    });
+  }
 
-        console.log(data.remaining)
-        console.log(data)
-        cards.forEach(cards => cards.classList.add('fx'));
+  newGame() {
+<<<<<<< HEAD
+    playerOneDisplay.innerHTML = playerOne.name = prompt('Player 1: Enter Your Name...') || 'Player 1'
+    playerTwoDisplay.innerHTML = playerTwo.name = prompt('Player 2: Enter Your Name...') || 'Player 2'
+    playerOneCardCount.innerText = `${playerOne.name} Card Count: ${playerOne.playerScore}`
+    playerTwoCardCount.innerText = `${playerTwo.name} Card Count: ${playerTwo.playerScore}`
+=======
+    playerOne.name = prompt('Player 1: Enter Your Name...' || 'Player 1')
+    playerTwo.name = prompt('Player 2: Enter Your Name...' || 'Player 2')
+>>>>>>> 6e5365f23b35316e7c4eb4815ae141e133c587b3
+    shuffleBtn.innerText = 'FLIP CARDS'
+    shuffleBtn.removeEventListener('click', war.newGame)
+    shuffleBtn.addEventListener('click', war.flipCards)
+    war.newDeck()
+  }
+
+  flipCards() {
+    fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=2`)
+    .then(res => res.json()) // parse response as JSON
+    .then(data => {
+<<<<<<< HEAD
+
+      p1Span.innerText = ''
+      p2Span.innerText = ''
+      warClock.innerText = ''
+      winner.innerText = ''
+      shuffleBtn.style.display = ''
+      cards.forEach(cards => cards.classList.add('fx'));
+
+      if (data.remaining === 0) {
+        war.pickGameWinner()
+
+      } else if (war.isWar === true) {
         p1Span.innerText = ''
         p2Span.innerText = ''
-        appendPlayerCards(playerOne)
-        appendPlayerCards(playerTwo)
-        playerOneSavedCards = []
-        playerTwoSavedCards = []
+        war.cardOneVal = war.calcCardVal(data.cards[0].value);
+        war.cardTwoVal = war.calcCardVal(data.cards[1].value);
 
-        if (data.remaining === 0) {
-          pickWinner()
-        } else { 
+        playerOneCard.src = data.cards[0].image;
+        playerTwoCard.src = data.cards[1].image;
+        war.warCards.push(data.cards[0].image, data.cards[1].image)
 
-          let val1 = cardValue( data.cards[0].value );
-          let val2 = cardValue( data.cards[1].value );
-          
-          document.querySelector('#playerOne').src = data.cards[0].image;
-          document.querySelector('#playerTwo').src = data.cards[1].image;
+      } else {
+        war.cardOneVal = war.calcCardVal(data.cards[0].value);
+        war.cardTwoVal = war.calcCardVal(data.cards[1].value);
 
-          // PLAYER 1 WINS
-          if (val1 > val2) {
-            if (itsWar === true && warCount === 3) {
-              document.querySelector('#winner').innerText = `${playerOne} Wins the War!`
-              p1Span.innerText = 'WINNER!'
-              playerOneCards += 8
-              warCards.push(data.cards[0].image, data.cards[1].image)
-              warCards.forEach(card => playerOneSavedCards.push(card))
-              // playerOneSavedCards.push(data.cards[0].image, data.cards[1].image)
-              warCards = []
-              cardCount()
-              itsWar = false
-              warCount = 0
-              shuffleBtn.style.display = ''
-            
-            } else if (itsWar === true) {
-              document.querySelector('#winner').innerText = `${playerOne} Wins!`
-              warCards.push(data.cards[0].image, data.cards[1].image)
+        playerOneCard.src = data.cards[0].image;
+        playerTwoCard.src = data.cards[1].image;
+        war.pickRoundWinner(war.cardOneVal, war.cardTwoVal)
+      }
+    })
+    .catch(err => {
+        console.log(`error ${err}`);
+    }); 
+  }
 
-            } else {
-              document.querySelector('#winner').innerText = `${playerOne} Wins!`
-              p1Span.innerText = 'WINNER!'
-              playerOneCards += 2
-              cardCount()
-              playerOneSavedCards.push(data.cards[0].image, data.cards[1].image)     
-           }
-            
-          // PLAYER 2 WINS
-          } else if (val1 < val2) {
-            if (itsWar === true && warCount === 3) {
-              document.querySelector('#winner').innerText = `${playerTwo} Wins the War!`
-              p2Span.innerText = 'WINNER!'
-              playerTwoCards += 8
-              warCards.push(data.cards[0].image, data.cards[1].image)
-              warCards.forEach(card => playerTwoSavedCards.push(card))
-              // playerTwoSavedCards.push(data.cards[0].image, data.cards[1].image)
-              warCards = []
-              cardCount()
-              itsWar = false
-              warCount = 0
-              shuffleBtn.style.display = ''
-            
-            } else if (itsWar === true) {
-              document.querySelector('#winner').innerText = `${playerTwo} Wins!`
-              warCards.push(data.cards[0].image, data.cards[1].image)
-                          
-            } else {
-              document.querySelector('#winner').innerText = `${playerTwo} Wins!`
-              p2Span.innerText = 'WINNER!'
-              playerTwoCards += 2
-              cardCount()
-              playerTwoSavedCards.push(data.cards[0].image, data.cards[1].image) 
-           }
-          
-          // TIE ... WAR!
-          } else {
-            document.querySelector('#winner').innerText = 'WAR!'
-            warCards.push(data.cards[0].image, data.cards[1].image)
-            war()
-        }
-        } 
+  war() {
+    war.isWar = true;
+    shuffleBtn.style.display = 'none'
+  
+    setTimeout(function() {
+      warClock.innerText = '1'
+      war.flipCards()
+      war.warFlips++
+    }, 2000)
+  
+    setTimeout(function() {
+      warClock.innerText = '2'
+      war.flipCards()
+      war.warFlips++
+    }, 4000)
+  
+    setTimeout(function() {
+      warClock.innerText = '3'
+      war.flipCards()
+      war.warFlips++
+    }, 6000)
+  
+    setTimeout(function() {
+      warClock.innerText = '4'
+      war.flipCards()
+      war.warFlips++
+      shuffleBtn.style.display = ''
+    }, 8000)
 
-        function war() {
-          itsWar = true;
-          shuffleBtn.style.display = 'none'
-        
-          setTimeout(function() {
-            warClock.innerText = '1'
-            getFetch()
-            warCount++
-          }, 2000)
-        
-          setTimeout(function() {
-            warClock.innerText = '2'
-            getFetch()
-            warCount++
-          }, 4000)
-        
-          setTimeout(function() {
-            warClock.innerText = '3'
-            getFetch()
-            warCount++
-          }, 6000)
-        
-          setTimeout(function() {
-            warClock.innerText = ''
-          }, 8000)
-        }
+    setTimeout(function() {
+      warClock.innerText = ''
+      shuffleBtn.style.display = ''
+      war.warPickWinner(war.cardOneVal, war.cardTwoVal)
+      war.isWar = false
+    }, 10000)
+  }
 
-        function appendPlayerCards(player) {
-          
-            if (player === playerOne) {
-              playerOneSavedCards.forEach(card => {
-                const newImg = document.createElement('img')
-                newImg.src = card
-                p1WonCards.appendChild(newImg)
-              })
-            } else {
-              playerTwoSavedCards.forEach(card => {
-                const newImg = document.createElement('img')
-                newImg.src = card
-                p2WonCards.appendChild(newImg)
-              })
-            }
-            // playerOneSavedCards = []
-            // playerTwoSavedCards = []
-          
-        }
+=======
 
-      })
-      .catch(err => {
-          console.log(`error ${err}`);
-      });
+      cards.forEach(cards => cards.classList.add('fx'));
+
+      if (data.remaining === 0) {
+        war.pickGameWinner()
+      } else {
+        war.cardOneVal = war.calcCardVal(data.cards[0].value);
+        war.cardTwoVal = war.calcCardVal(data.cards[1].value);
+
+        playerOneCard.src = data.cards[0].image;
+        playerTwoCard.src = data.cards[1].image;
+        war.pickRoundWinner(war.cardOneVal, war.cardTwoVal)
+      }  
+    })
+    .catch(err => {
+        console.log(`error ${err}`);
+    }); 
+  }
+
+>>>>>>> 6e5365f23b35316e7c4eb4815ae141e133c587b3
+  calcCardVal(val) {
+    switch (val) {
+      case 'ACE':
+        return 14;
+        break;
+      case 'KING':
+        return 13;
+        break;
+      case 'QUEEN':
+        return 12;
+        break;
+      case 'JACK':
+        return 11;
+      default:
+        return Number(val);
+        break;
+    }
+  }
+
+  pickRoundWinner(val1, val2) {
+<<<<<<< HEAD
+
+    // PlayerOne Wins
+     if (val1 > val2) {
+      winner.innerText = `${playerOne.name} Wins the Round!`
+      p1Span.innerText = 'WINNER!'
+      playerOne.updatePlayerScore(2)
+      playerOneCardCount.innerText = `${playerOne.name} Card Count: ${playerOne.playerScore}`
+      playerOne.cardsWon.push(playerOneCard.src, playerTwoCard.src)
+      playerOne.appendPlayerCards(playerOne)
+    
+    // PlayerTwo Wins
+    } else if (val1 < val2) {
+      winner.innerText = `${playerTwo.name} Wins the Round!`
+      p2Span.innerText = 'WINNER!'
+      playerTwo.updatePlayerScore(2)
+      playerTwoCardCount.innerText = `${playerTwo.name} Card Count: ${playerTwo.playerScore}`
+      playerTwo.cardsWon.push(playerOneCard.src, playerTwoCard.src)
+      playerTwo.appendPlayerCards(playerTwo)
+
+    // Tie... or War...
+    } else {
+      winner.innerText = `It's War!`
+      war.warCards.push(playerOneCard.src, playerTwoCard.src)
+      war.war()
+    }
+   
+  }
+
+  warPickWinner(val1, val2) {
+    if (val1 > val2) {
+      p1Span.innerText = 'WINNER!'
+      winner.innerText = `${playerOne.name} Wins the War!`
+      playerOne.updatePlayerScore(10)
+      playerOneCardCount.innerText = `${playerOne.name} Card Count: ${playerOne.playerScore}`
+      playerOne.cardsWon.push(...war.warCards)
+      playerOne.appendPlayerCards(playerOne)
+      war.warCards = []
+      war.warFlips = 0
+      
+
+    } else if (val1 < val2) {
+      p2Span.innerText = 'WINNER!'
+      winner.innerText = `${playerTwo.name} Wins the War!`
+      playerTwo.updatePlayerScore(10)
+      playerTwoCardCount.innerText = `${playerTwo.name} Card Count: ${playerTwo.playerScore}`
+      playerTwo.cardsWon.push(...war.warCards)
+      playerTwo.appendPlayerCards(playerTwo)
+      war.warCards = []
+      war.warFlips = 0
+
+    } else {
+      winner.innerText = `It's War!`
+      war.warFlips = 0
+      war.war()
+    }
+  }
+
+  pickGameWinner() {
+    if (playerOne.playerScore > playerTwo.playerScore) {
+      alert(`${playerOne.name} WINS THE GAME!`)
+      playerOne.updatePlayerScore(2)
+    } else {
+      alert(`${playerTwo.name} WINS THE GAME!`)
+      playerTwo.updatePlayerScore(2)
+    }
+  }
+ 
 }
+
+class Player {
+  constructor(assignment, name, playerScore, cardsWon, warWins) {
+    this.assignment = assignment;
+    this.name = name;
+    this.playerScore = playerScore;
+    this.cardsWon = cardsWon;
+    this.warWins = warWins;
+  }
+  
+  calculateScore = () => {
+     playerOneCardCount.innerText = `Card Count: ${playerOne.playerScore}`
+     playerTwoCardCount.innerText = `Card Count: ${playerTwo.playerScore}`
+  }
+
+  updatePlayerScore(value) {
+    this.playerScore += value
+  }
+
+  appendPlayerCards = (player) => {
+      if (player === playerOne) {
+        playerOneWonCards.innerText = ''
+        this.cardsWon.forEach(card => {
+          const newImg = document.createElement('img')
+          newImg.src = card
+          playerOneWonCards.appendChild(newImg)
+        })
+      } else if (player === playerTwo) {
+        playerTwoWonCards.innerText = ''
+        this.cardsWon.forEach(card => {
+          const newImg = document.createElement('img')
+          newImg.src = card
+          playerTwoWonCards.appendChild(newImg)
+        })
+      }
+    }
+}
+
+const war = new Game(false, 0, 0, [])
+const playerOne = new Player('playerOne', 'Player 1', 0, [], [], 0, 0)
+const playerTwo = new Player('playerTWo', 'Player 2', 0, [], [], 0)
+const players = [playerOne, playerTwo]
+
+shuffleBtn.addEventListener('click', war.newGame)
+// shuffleBtn.addEventListener('click', war.flipCards)
+cards.forEach(card => card.addEventListener('transitionend', removeTransition))
+
 
 function cardValue(val) {
   if (val === 'ACE') {
@@ -195,51 +313,81 @@ function cardValue(val) {
     return 11;
   } else {
     return Number(val);
+=======
+    if (val1 > val2) {
+
+      winner.innerText = `${playerOne.name} Wins the Round!`
+      p1Span.innerText = 'WINNER!'
+      playerOne.playerScore += 2
+      playerOne.cardsWon.push(data.cards[0].image, data.cards[1].image)
+
+    } else if (val1 < val2) {
+
+      winner.innerText = `${playerTwo.name} Wins the Round!`
+      p2Span.innerText = 'WINNER!'
+      playerTwo.playerScore += 2
+      playerTwo.cardsWon.push(data.cards[0].image, data.cards[1].image)
+    
+
+    }
+
+    p1CardCount.innerText = `Card Count: ${playerOne.playerScore}`
+    p2CardCount.innerText = `Card Count: ${playerTwo.playerScore}`
+
+>>>>>>> 6e5365f23b35316e7c4eb4815ae141e133c587b3
   }
-}
 
-// function war() {
-//   itsWar = true;
-//   shuffleBtn.style.display = 'none'
-
-//   setTimeout(function() {
-//     warClock.innerText = '1'
-//     getFetch()
-//     warCards.push(data.cards[0].image, data.cards[1].image)
-//     warCount++
-//   }, 2000)
-
-//   setTimeout(function() {
-//     warClock.innerText = '2'
-//     getFetch()
-//     warCards.push(data.cards[0].image, data.cards[1].image)
-//     warCount++
-//   }, 4000)
-
-//   setTimeout(function() {
-//     warClock.innerText = '3'
-//     getFetch()
-//     warCards.push(data.cards[0].image, data.cards[1].image)
-//     warCount++
-//   }, 6000)
-
-//   setTimeout(function() {
-//     warClock.innerText = ''
-//   }, 8000)
-// }
+<<<<<<< HEAD
 
 function pickWinner() {
   if (playerOneCards > playerTwoCards) {
     alert(`${playerOne} WINS THE GAME!`)
   } else {
     alert(`${playerTwo} WINS THE GAME!`)
+=======
+  pickGameWinner() {
+    if (playerOneCards > playerTwoCards) {
+      alert(`${playerOne.name} WINS THE GAME!`)
+    } else {
+      alert(`${playerTwo.name} WINS THE GAME!`)
+    }
+>>>>>>> 6e5365f23b35316e7c4eb4815ae141e133c587b3
   }
+ 
 }
 
-function cardCount() {
-  p1CardCount.innerText = `Card Count: ${playerOneCards}`
-  p2CardCount.innerText = `Card Count: ${playerTwoCards}`
+<<<<<<< HEAD
+// function cardCount() {
+//   p1CardCount.innerText = `Card Count: ${playerOneCards}`
+//   p2CardCount.innerText = `Card Count: ${playerTwoCards}`
+// }
+=======
+class Player {
+  constructor(name, playerScore, cardsWon) {
+    this.name = name;
+    this.playerScore = playerScore;
+    this.cardsWon = cardsWon;
+  }
+  
+  get calculateScore() {
+    return this.playerScore;
+  }
 }
+>>>>>>> 6e5365f23b35316e7c4eb4815ae141e133c587b3
+
+// creating game objects from our classes
+
+const war = new Game()
+const playerOne = new Player('Player 1', 0, [])
+const playerTwo = new Player('Player 2', 0, [])
+
+// event listeners
+
+shuffleBtn.addEventListener('click', war.newGame)
+// shuffleBtn.addEventListener('click', war.flipCards)
+cards.forEach(card => card.addEventListener('transitionend', removeTransition))
+
+// misc functions
 
 function removeTransition(e) {
   if (e.propertyName !== 'transform') return;
