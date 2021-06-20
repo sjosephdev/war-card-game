@@ -15,6 +15,7 @@ const playerTwoCard = document.querySelector('#playerTwoCard')
 const playerOneWonCards = document.querySelector('.p1WonCards')
 const playerTwoWonCards = document.querySelector('.p2WonCards')
 const winner = document.querySelector('#winner')
+const winners = Array.from(document.querySelectorAll('.winner'))
 
 
 class Game {
@@ -55,7 +56,6 @@ class Game {
 
       p1Span.innerText = ''
       p2Span.innerText = ''
-      warClock.innerText = ''
       winner.innerText = ''
       shuffleBtn.style.display = ''
       cards.forEach(cards => cards.classList.add('fx'));
@@ -92,25 +92,25 @@ class Game {
     shuffleBtn.style.display = 'none'
   
     setTimeout(function() {
-      warClock.innerText = '1'
+      warClock.innerText = 'Flip 1'
       war.flipCards()
       war.warFlips++
     }, 2000)
   
     setTimeout(function() {
-      warClock.innerText = '2'
+      warClock.innerText = 'Flip 2'
       war.flipCards()
       war.warFlips++
     }, 4000)
   
     setTimeout(function() {
-      warClock.innerText = '3'
+      warClock.innerText = 'Flip 3'
       war.flipCards()
       war.warFlips++
     }, 6000)
   
     setTimeout(function() {
-      warClock.innerText = '4'
+      warClock.innerText = 'Final Flip!'
       war.flipCards()
       war.warFlips++
       shuffleBtn.style.display = ''
@@ -258,35 +258,6 @@ const players = [playerOne, playerTwo]
 shuffleBtn.addEventListener('click', war.newGame)
 // shuffleBtn.addEventListener('click', war.flipCards)
 cards.forEach(card => card.addEventListener('transitionend', removeTransition))
-
-
-function cardValue(val) {
-  if (val === 'ACE') {
-    return 14;
-  } else if (val === 'KING') {
-    return 13;
-  } else if (val === 'QUEEN') {
-    return 12;
-  } else if (val === 'JACK') {
-    return 11;
-  } else {
-    return Number(val);
-  }
-}
-
-
-function pickWinner() {
-  if (playerOneCards > playerTwoCards) {
-    alert(`${playerOne} WINS THE GAME!`)
-  } else {
-    alert(`${playerTwo} WINS THE GAME!`)
-  }
-}
-
-// function cardCount() {
-//   p1CardCount.innerText = `Card Count: ${playerOneCards}`
-//   p2CardCount.innerText = `Card Count: ${playerTwoCards}`
-// }
 
 function removeTransition(e) {
   if (e.propertyName !== 'transform') return;
