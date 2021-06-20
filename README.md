@@ -19,4 +19,4 @@ The design focus is straightforward and responsive / mobile-friendly.
 
 - Javascript
 - HTML
-- CSS!
+- CSS
