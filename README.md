@@ -1,6 +1,6 @@
 # War! (Card Game)
 
-[cardgamewar300](https://user-images.githubusercontent.com/78551427/122683705-f7746280-d1ce-11eb-8476-ea60799e7e6f.png)
+![cardgamewar300](https://user-images.githubusercontent.com/78551427/122683705-f7746280-d1ce-11eb-8476-ea60799e7e6f.png)
 
 https://war-card-game.sjoseph.dev
 
