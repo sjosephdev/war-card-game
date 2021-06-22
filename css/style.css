@@ -155,6 +155,7 @@ button {
   }
 
   .players {
+    align-content: center;
     flex-flow: column nowrap;
     justify-content: center;
   }
@@ -162,6 +163,11 @@ button {
   .p1WonCards,
   .p2WonCards {
     display: none;
+  }
+  
+  .p1Span,
+  .p2Span {
+    margin: 0;
   }
   
   #playerOneCard,
