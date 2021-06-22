@@ -166,7 +166,7 @@ button {
   
   #playerOneCard,
   #playerTwoCard {
-    text-size: 1rem;
+    text-size: 0.5rem;
   }
 
   #winner {
