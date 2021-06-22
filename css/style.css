@@ -165,15 +165,16 @@ button {
     display: none;
   }
   
-  .p1Span,
-  .p2Span {
-    margin: 0;
-  }
-  
+
   #playerOneCard,
   #playerTwoCard {
     transform: scale(0.7);
     -webkit-transform: scale(0.7);
+  }
+  
+  #p1Span,
+  #p2Span {
+    margin: 0;
   }
 
   #winner {
