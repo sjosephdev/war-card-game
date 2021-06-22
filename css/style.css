@@ -168,6 +168,7 @@ button {
 
   #playerOneCard,
   #playerTwoCard {
+    margin-bottom: -1rem;
     transform: scale(0.7);
     -webkit-transform: scale(0.7);
   }
