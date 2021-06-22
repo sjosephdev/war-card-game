@@ -157,7 +157,7 @@ button {
   .players {
     align-content: center;
     flex-flow: column nowrap;
-    justify-content: space-around;
+    justify-content: center;
   }
 
   .p1WonCards,
@@ -174,7 +174,7 @@ button {
   
   #p1Span,
   #p2Span {
-    margin: 0;
+    margin-top: -1rem;
   }
 
   #winner {
