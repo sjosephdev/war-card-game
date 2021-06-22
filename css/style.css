@@ -175,7 +175,7 @@ button {
   
   #p1Span,
   #p2Span {
-    margin-top: -1rem;
+    display: none;
   }
 
   #winner {
