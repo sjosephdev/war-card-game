@@ -139,3 +139,34 @@ button {
   margin: 0 2rem;
   font-size: 3rem;
 }
+
+/* Media Queries */
+
+@media screen and (max-width: 900px) {
+
+  h2, span {
+    font-size: 4rem;
+  }
+
+  .mainSection {
+    margin-bottom: 1rem;
+    transform: scale(0.9);
+    -webkit-transform: scale(0.9);
+  }
+
+  .players {
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+  }
+
+  .p1WonCards,
+  .p2WonCards {
+    display: none;
+  }
+
+  #winner {
+    font-size: 3rem;
+    margin: 0;
+  }
+
+}
