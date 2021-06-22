@@ -163,6 +163,11 @@ button {
   .p2WonCards {
     display: none;
   }
+  
+  #playerOneCard,
+  #playerTwoCard {
+    text-size: 1rem;
+  }
 
   #winner {
     font-size: 3rem;
