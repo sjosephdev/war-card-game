@@ -166,7 +166,8 @@ button {
   
   #playerOneCard,
   #playerTwoCard {
-    font-size: 0.2rem;
+    transform: scale(0.5);
+    -webkit-transform: scale(0.5);
   }
 
   #winner {
